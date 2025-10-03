@@ -1,0 +1,44 @@
+{% include 'cabecalho.html' %}
+
+<h1 class="mb-4">Cadastrar Turma</h1>
+
+<div class="row">
+  <div class="col-12">
+    <form action="/turma/salvar/{{ turma[0] }}" method="POST">
+      
+      <!-- Semestre -->
+      <div class="mb-3">
+        <label for="semestre" class="form-label">Semestre</label>
+        <input type="text" class="form-control" id="semestre" name="semestre" value="{{ turma[1] }}" required>
+      </div>
+
+      <!-- Curso -->
+      <div class="mb-3">
+        <label for="curso_id" class="form-label">Curso {{turma[2]}}</label>
+        <select name="curso_id" id="curso_id" class="form-select" required>
+          {% for curso in lista_cursos %}
+            <option value="{{ curso[0] }}" {% if curso[0] == turma[2] %} selected {% endif %}>{{ curso[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Professor -->
+      <div class="mb-3">
+        <label for="professor_id" class="form-label">Professor</label>
+        <select name="professor_id" id="professor_id" class="form-select" required>
+          {% for professor in lista_professores %}
+            <option value="{{ professor[0] }}" {% if turma and professor[0] == turma[3] %}selected{% endif %}>{{ professor[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Botões -->
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="/turma" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% include 'rodape.html' %}

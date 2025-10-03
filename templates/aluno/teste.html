@@ -1,0 +1,152 @@
+{% include 'cabecalho.html' %}
+<h1 class="mb-4">Demo Iteração sobre uma lista </h1>
+
+<style>
+
+  .painel {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .box {
+    width: 300px;              /* largura do conteúdo */
+    height: 150px;             /* altura do conteúdo */
+    padding: 20px;             /* espaço interno */
+    border: 5px solid #3498db; /* borda */
+    margin: 30px;              /* espaço externo */
+    background-color: #ecf0f1; /* cor de fundo */
+    box-sizing: content-box;   /* padrão: largura e altura não incluem padding nem border */
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* sombra */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+</style>
+
+
+<form action="/receber_teste/" method="POST">
+  <select name="curso_id" id="curso_id" class"form-select" required>
+    <option >--Selecione--</option>
+    {% for item in lista_cursos %}
+    <option value="{{item[0]}}">{{item[1]}}</option>
+    {% endfor %}
+  </select>
+  
+  <br> <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+  </form>
+
+<br>
+  <select name="carro_id" id="carro_id">
+    <option value="1">Volvo</option>
+    <option value="2">Saab</option>
+    <option value="3"  >Mercedes</option>
+    <option value="4" selected >Audi</option>
+  </select>
+
+<div class="painel">
+
+    {% for item in lista_alunos %}
+
+      <div class="box" > Posição: {{loop.index0}} :: ID {{item[0]}} :: {{item[1]}} </div>
+
+    {% endfor %}
+
+<div>
+
+
+
+
+
+{% include 'rodape.html' %}
+
+
+
+
+    <!--
+        </p>
+            <label> <input type="radio" name="chave" value="valor" /> Descrição  </label>
+        </p>
+
+
+        
+
+
+<select name="cars" id="cars">
+    <option value="1">Volvo</option>
+    <option value="2">GM</option>
+    <option value="3" selected >Mercedes</option>
+    <option value="4">Audi</option>
+  </select>
+
+
+  
+<form action="/receber_teste/" method="POST">
+
+<select name="aluno_id" id="aluno_id">
+    <option value="1">Volvo</option>
+    <option value="2">Saab</option>
+    <option value="3" selected >Mercedes</option>
+    <option value="4">Audi</option>
+  </select>
+
+ <br> <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+</form>
+
+
+<form action="/receber_teste/" method="POST">
+<select name="curso_id" id="curso_id" class"form-select" required>
+  <option value="1">Informática</option>
+  <option value="2">Administração</option>
+  <option value="3">Enfermagem</option>
+  <option value="4">Eletrotécnica</option>
+</select>
+
+<br> <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+</form>
+
+      
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <label for="curso">Curso:</label>
+  <select name="curso_id" id="curso">
+    <option value="1">Informática</option>
+    <option value="2">Administração</option>
+    <option value="3">Enfermagem</option>
+    <option value="4">Eletrotécnica</option>
+  </select>
+  
+    
+  <select name="curso_id" id="curso_id" class="form-select" required>
+    {% for curso in lista_cursos %}
+      <option value="{{ curso[0] }}">{{ curso[1] }}</option>
+    {% endfor %}
+  </select>
+  
+
+
+
+<style>
+
+  .painel {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .box {
+    width: 300px;              /* largura do conteúdo */
+    height: 150px;             /* altura do conteúdo */
+    padding: 20px;             /* espaço interno */
+    border: 5px solid #3498db; /* borda */
+    margin: 30px;              /* espaço externo */
+    background-color: #ecf0f1; /* cor de fundo */
+    box-sizing: content-box;   /* padrão: largura e altura não incluem padding nem border */
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* sombra */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+</style>
+
+
+    -->
