@@ -1,11 +1,11 @@
-import sqlite3
+from db_config import get_connection
 
 class CursoDAO:
     def __init__(self, db_path='banco_escola.db'):
         self.db_path = db_path
 
     def listar(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, nome_curso, duracao  FROM curso')
         lista = cursor.fetchall()

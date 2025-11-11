@@ -1,11 +1,11 @@
-import sqlite3
+from db_config import get_connection
 
 class ProfessorDAO:
     def __init__(self, db_path='banco_escola.db'):
         self.db_path = db_path
 
     def listar(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, nome, disciplina FROM professor')
         lista = cursor.fetchall()
@@ -14,7 +14,7 @@ class ProfessorDAO:
     
 
     def salvar(self, id, nome, disciplina):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
 
         try:

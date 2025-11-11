@@ -1,11 +1,11 @@
-import sqlite3
+from db_config import get_connection
 
 class TurmaDAO:
     def __init__(self, db_path='banco_escola.db'):
         self.db_path = db_path
 
     def listar(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('''
             SELECT turma.id, turma.semestre, curso.nome_curso, professor.nome,professor.disciplina
@@ -18,7 +18,7 @@ class TurmaDAO:
         return lista
 
     def salvar(self, id, semestre, curso_id, professor_id):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         try:
             if id:
@@ -37,7 +37,7 @@ class TurmaDAO:
             conn.close()
 
     def buscar_por_id(self, id):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, semestre, curso_id, professor_id FROM turma WHERE id = ?', (id,))
         turma = cursor.fetchone()
@@ -46,7 +46,7 @@ class TurmaDAO:
     
     
     def remover(self, id):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         try:
             cursor.execute('DELETE FROM turma WHERE id = ?', (id,))

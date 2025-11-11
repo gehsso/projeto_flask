@@ -1,11 +1,11 @@
-import sqlite3
+from db_config import get_connection
 
 class AlunoDAO:
     def __init__(self, db_path='banco_escola.db'):
         self.db_path = db_path
 
     def listar(self):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, nome, idade, cidade FROM aluno')
         lista = cursor.fetchall()
@@ -14,7 +14,7 @@ class AlunoDAO:
     
 
     def salvar(self, id, nome, idade, cidade):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
 
         try:
@@ -25,7 +25,7 @@ class AlunoDAO:
                 
             else:  # Inserir
                 cursor.execute('''
-                    INSERT INTO aluno (nome, idade, cidade) VALUES (?, ?, ?)
+                    INSERT INTO aluno (nome, idade, cidade) VALUES (%s, %s, %s)
                 ''', (nome, idade, cidade))
 
             conn.commit()
@@ -39,7 +39,7 @@ class AlunoDAO:
             
 
     def buscar_por_id(self, id):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         cursor.execute('SELECT id, nome, idade, cidade FROM aluno WHERE id = ?', (id,))
         registro = cursor.fetchone() # retorna o registro selecionado
@@ -48,7 +48,7 @@ class AlunoDAO:
     
     
     def remover(self, id):
-        conn = sqlite3.connect(self.db_path)
+        conn = get_connection()
         cursor = conn.cursor()
         try:
             cursor.execute('DELETE FROM aluno WHERE id = ?', (id,))
